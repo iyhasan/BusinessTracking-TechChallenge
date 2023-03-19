@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+alembic = "*"
+uvicorn = "*"
+fastapi = "*"
+sqlalchemy = "*"
+asyncpg = "*"
+databases = "*"
+python-dotenv = "*"
+pyjwt = "*"
+passlib = "*"
+bcrypt = "*"
+psycopg2 = "*"
+python-multipart = "*"
+importlib-resources = "*"
+importlib-metadata = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
