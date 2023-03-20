@@ -18,6 +18,7 @@ psycopg2 = "*"
 python-multipart = "*"
 importlib-resources = "*"
 importlib-metadata = "*"
+hupper = "*"
 
 [dev-packages]
 

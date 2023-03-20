@@ -33,4 +33,4 @@ COPY . /app
 
 # Start the FastAPI application using uvicorn
 # Bind the application to listen on all interfaces (0.0.0.0) and port 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["hupper", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

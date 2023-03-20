@@ -18,28 +18,6 @@ ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-class OAuth2EmailPasswordRequestForm:
-    """
-        Based on  OAuth2PasswordRequestForm from fastapi
-        but uses email instead of password
-    """
-
-    def __init__(
-        self,
-        grant_type: str = Form(default=None, regex="password"),
-        email: str = Form(),
-        password: str = Form(),
-        scope: str = Form(default=""),
-        client_id: Optional[str] = Form(default=None),
-        client_secret: Optional[str] = Form(default=None),
-    ):
-        self.grant_type = grant_type
-        self.email = email
-        self.password = password
-        self.scopes = scope.split()
-        self.client_id = client_id
-        self.client_secret = client_secret
-
 def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
     if expires_delta:
