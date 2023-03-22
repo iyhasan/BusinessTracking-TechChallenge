@@ -29,8 +29,21 @@ def upgrade() -> None:
         sa.Column('last_name', sa.String())
     )
 
+    op.create_table(
+        'admins',
+        sa.Column('user_id', UUID(as_uuid=True), sa.ForeignKey('users.id'), primary_key=True, nullable=False),
+        sa.Column('created_at', sa.DateTime()),
+        sa.Column('updated_at', sa.DateTime()),
+        sa.Column('is_active', sa.Boolean(), default=False, nullable=False)
+    )
+
 
 def downgrade() -> None:
+
     op.drop_table(
-    'users'
+        'admins'
+    )
+
+    op.drop_table(
+        'users'
     )

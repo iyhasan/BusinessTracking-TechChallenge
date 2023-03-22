@@ -2,12 +2,12 @@
 import React from 'react';
 import LoginForm from '../../components/login';
 import { LoginFields } from '../../types/login-form';
-import loginAPI from '../../apis/login'
+import { POSTLogin } from '../../apis/login'
 
 const Login: React.FC = () => {
   const handleLogin = (form: LoginFields) => {
     
-    loginAPI.login(form)
+    POSTLogin(form)
     .then((resp: any) => {
       console.log(resp)
     }).catch(
