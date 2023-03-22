@@ -2,19 +2,21 @@
 import React from 'react';
 import LoginForm from '../../components/login';
 import { LoginFields } from '../../types/login-form';
-import { POSTLogin } from '../../apis/login'
+import { POSTLogin } from '../../apis/login';
+import { authStore } from '../../store';
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
-  const handleLogin = (form: LoginFields) => {
-    
-    POSTLogin(form)
-    .then((resp: any) => {
-      console.log(resp)
-    }).catch(
-      (err: any) => {
-        console.log(err)
-      }
-    )
+
+  let navigate = useNavigate();
+
+  const handleLogin = async (form: LoginFields) => {    
+    const resp = await POSTLogin(form)
+    const { data } = resp;
+    const { access_token } = data;
+
+    authStore.setState({isAuthenticated: true})
+    return navigate('/');
 
   };
 

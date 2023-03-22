@@ -4,7 +4,6 @@ import ProtectedRoute from "./components/protected-route";
 import { openRoutes } from "./routes/open-routes";
 import { protectedRoutes } from "./routes/protected-routes";
 
-
 const App: React.FC = () => {
   return (
         <Router>

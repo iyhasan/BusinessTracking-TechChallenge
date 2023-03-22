@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
+import { authStore } from '../../store';
 
 interface PropType {
     component: React.FC;
@@ -6,7 +7,7 @@ interface PropType {
 
 const ProtectedRoute = () => {
     // const { isAuthenticated } = useAppSelector(state => state.auth);
-    const auth = false;
+    const auth = authStore((state) => state.isAuthenticated);
 
     // if (isAuthenticated) return <Component />;
     return auth ? <Outlet /> : <Navigate to='/login' />;
