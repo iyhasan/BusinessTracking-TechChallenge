@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../../components/layout';
 import { ProfileType } from '../../types/user';
 import { GETProfile } from '../../apis/user';
+import { PROFILE_FIELDS } from './objects';
+import './index.css'
 
 const Profile: React.FC = () => {
 
@@ -24,26 +26,22 @@ const Profile: React.FC = () => {
     return (
     <Layout>
         <div>
-        <table>
+        <table className='table'>
             <thead>
                 <tr>
-                <th>Field</th>
-                <th>Value</th>
+                <th className='table-head'>Field</th>
+                <th className='table-head'>Value</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                <td>First Name</td>
-                <td>{profile?.first_name}</td>
-                </tr>
-                <tr>
-                <td>Last Name</td>
-                <td>{profile?.last_name}</td>
-                </tr>
-                <tr>
-                <td>Email</td>
-                <td>{profile?.email}</td>
-                </tr>
+                {
+                    PROFILE_FIELDS.map((field) => (
+                        <tr key={`${field.dataIndex}`}>
+                            <td className='field-label'>{field.label}</td>
+                            <td className='field-value'>{profile ? profile[field.dataIndex as keyof ProfileType] : null}</td>
+                        </tr>
+                    ))
+                }
             </tbody>
         </table>
         </div>
