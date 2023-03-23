@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./axios-wrapper";
 import { LoginFields } from "../types/login-form";
 import { apiUrl } from ".";
 
@@ -7,7 +7,7 @@ export const POSTLogin = (form: LoginFields) => {
     console.log('Password:', form.password);
 
     return axios.post(
-        `${apiUrl}users/token`,
+        `${apiUrl}auth/user`,
         {
             email: form.email,
             password: form.password
