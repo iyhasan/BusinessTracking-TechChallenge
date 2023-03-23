@@ -1,12 +1,15 @@
 // src/pages/Login.tsx
 import React from 'react';
+import Layout from '../../components/layout';
 
 const Home: React.FC = () => {
 
   return (
-    <div>
-      Hello World
-    </div>
+    <Layout>
+      <div>
+        Hello World
+      </div>
+    </Layout>
   );
 };
 

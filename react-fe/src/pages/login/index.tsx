@@ -3,7 +3,7 @@ import React from 'react';
 import LoginForm from '../../components/login';
 import { LoginFields } from '../../types/login-form';
 import { POSTLogin } from '../../apis/login';
-import { authStore } from '../../store';
+import { authStore, userStore } from '../../store';
 import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
@@ -13,9 +13,11 @@ const Login: React.FC = () => {
   const handleLogin = async (form: LoginFields) => {    
     const resp = await POSTLogin(form)
     const { data } = resp;
-    const { access_token } = data;
+    const { access_token, user } = data;
 
-    authStore.setState({isAuthenticated: true})
+    userStore.setState({user: user})
+    authStore.setState({token: access_token})
+    authStore.getState().login()
     return navigate('/');
 
   };
