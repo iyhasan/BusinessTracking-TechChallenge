@@ -13,6 +13,9 @@ const Navbar: React.FC = () => {
         <a href="/" className='nav-link'>
           Home
         </a>
+        <a href="/profile" className='nav-link'>
+          Profile
+        </a>
         <div className='right-navs'>
             <a onClick={logout} className='nav-link'>
                 Logout

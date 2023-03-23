@@ -5,4 +5,9 @@
 .nav-link {
     color: white;
     text-decoration: none;
+    padding: 0 5px;
+}
+
+.nav-link:hover {
+    background-color: grey;
 }

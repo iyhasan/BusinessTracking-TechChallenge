@@ -1,4 +1,3 @@
-// src/pages/Login.tsx
 import React from 'react';
 import Layout from '../../components/layout';
 
