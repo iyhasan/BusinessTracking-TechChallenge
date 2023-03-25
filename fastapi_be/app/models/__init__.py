@@ -1,5 +1,6 @@
 from .user import (
-    User
+    User,
+    Admin
 )
 from .base import (
     Base,
