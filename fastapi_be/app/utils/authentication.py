@@ -52,3 +52,14 @@ async def get_current_user(db: Session = Depends(db.get_db), token: str = Depend
         raise credentials_exception
     return user
 
+async def get_current_admin(db: Session = Depends(db.get_db), token: str = Depends(oauth2_scheme)):
+    user = await get_current_user(db, token)
+
+    if not user.admin:
+        raise HTTPException(status_code=401, detail="Non Admin Users are not allowed access")
+    if not user.admin.is_active:
+        raise HTTPException(status_code=401, detail="Your Admin account is deactivated")
+    
+    print(user)
+
+    return user

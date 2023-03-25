@@ -5,3 +5,9 @@ from  .users import (
     Token,
     TokenData
 )
+
+from .admins import (
+    Admin,
+    AdminUser,
+    user_to_admin_user
+)

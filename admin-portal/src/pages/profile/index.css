@@ -1,0 +1,17 @@
+.table {
+    font-size: 16px;
+}
+
+.table-head {
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.field-label {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.field-value {
+    font-size: 18px;
+}
