@@ -7,6 +7,8 @@ services:
       - "8000:8000"
     volumes:
       - ./fastapi_be:/app
+    env_file:
+      - .env
     restart: always
     depends_on:
       - react-fe
@@ -19,6 +21,8 @@ services:
     volumes:
       - ./react-fe:/app
       - /app/node_modules
+    env_file:
+      - .env
     restart: always
 
   admin-portal:
@@ -28,6 +32,8 @@ services:
     volumes:
       - ./admin-portal:/app
       - /app/node_modules
+    env_file:
+      - .env
     restart: always
 
   postgres:
@@ -40,6 +46,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    env_file:
+      - .env
     restart: always
 
   pgadmin:
@@ -51,6 +59,8 @@ services:
       - "5050:80"
     depends_on:
       - postgres
+    env_file:
+      - .env
     restart: always
 
 volumes:

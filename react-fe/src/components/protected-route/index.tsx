@@ -1,9 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { authStore } from '../../store';
 
-interface PropType {
-    component: React.FC;
-}
 
 const ProtectedRoute = () => {
     // const { isAuthenticated } = useAppSelector(state => state.auth);

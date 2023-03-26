@@ -26,7 +26,7 @@ axios.interceptors.response.use(function (response) {
     const status = error?.response?.status
 
     // if unauthorized - log user out and clear token
-    if (status == 401) {
+    if (status === 401) {
         authStore.setState({token: null})
         authStore.getState().logout()
     } 
