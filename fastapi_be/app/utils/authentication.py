@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from app import crud, schemas, db
 import os
 from dotenv import load_dotenv
+import app.exception.client_error as ce
 
 load_dotenv()
 
@@ -38,7 +39,7 @@ async def authenticate_user(db: Session, email: str, password: str):
     return user
 
 async def get_current_user(db: Session = Depends(db.get_db), token: str = Depends(oauth2_scheme)):
-    credentials_exception = HTTPException(status_code=401, detail="Could not validate credentials")
+    credentials_exception = ce.InvalidCredentialsException()
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email: str = payload.get("sub")
@@ -56,9 +57,9 @@ async def get_current_admin(db: Session = Depends(db.get_db), token: str = Depen
     user = await get_current_user(db, token)
 
     if not user.admin:
-        raise HTTPException(status_code=401, detail="Non Admin Users are not allowed access")
+        raise ce.NotAuthorizedException()
     if not user.admin.is_active:
-        raise HTTPException(status_code=401, detail="Your Admin account is deactivated")
+        raise ce.DeactivatedAdminAccount()
     
     print(user)
 

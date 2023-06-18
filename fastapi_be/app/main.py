@@ -2,9 +2,11 @@ from fastapi import FastAPI, Depends
 from app.routers import  users, admins, auth
 from fastapi.middleware.cors import CORSMiddleware
 from app.utils.authentication import get_current_user, get_current_admin
+from app.middlewares import ExceptionHandlingMiddleware
 
 app = FastAPI()
 
+app.add_middleware(ExceptionHandlingMiddleware)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
