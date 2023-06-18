@@ -9,13 +9,6 @@ from app.exception.client_error import InvalidPayloadException
 
 router = APIRouter()
 
-@router.post("/", response_model=schemas.User)
-def create_user(user: schemas.UserCreate, db: Session = Depends(db.get_db)):
-    db_user = crud.get_user_by_email(db, email=user.email)
-    if db_user:
-        raise InvalidPayloadException('Email is already registered')
-    return crud.create_user(db=db, user=user)
-
 @router.get("/me/", response_model=schemas.User)
 async def read_users_me(current_user: models.User = Depends(authentication.get_current_user)):
     return current_user
