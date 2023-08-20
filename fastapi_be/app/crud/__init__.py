@@ -3,3 +3,5 @@ from .user_crud import (
     verify_password,
     create_user
 )
+
+from . import company_crud as company

@@ -1,0 +1,132 @@
+{
+    "Technology": [
+      "Software Development",
+      "Hardware Manufacturing",
+      "Cloud Computing Services",
+      "Artificial Intelligence and Machine Learning",
+      "Virtual and Augmented Reality"
+    ],
+    "Healthcare": [
+      "Biotechnology",
+      "Pharmaceuticals",
+      "Medical Devices",
+      "Telemedicine",
+      "Health Analytics"
+    ],
+    "Finance": [
+      "Banking",
+      "Insurance",
+      "Blockchain",
+      "Cryptocurrencies",
+      "Peer-to-Peer lending",
+      "Investment Management"
+    ],
+    "Energy": [
+      "Oil and Gas",
+      "Solar",
+      "Wind",
+      "Hydroelectric",
+      "Batteries",
+      "Grid Solutions",
+      "Nuclear Energy"
+    ],
+    "Agriculture": [
+      "Organic Farming",
+      "Precision agriculture",
+      "Drones",
+      "Aquaculture"
+    ],
+    "Real Estate": [
+      "Residential Construction",
+      "Commercial Construction",
+      "Real Estate Technology (PropTech)",
+      "Real Estate Investment"
+    ],
+    "Consumer Goods": [
+      "Food and Beverages",
+      "Apparel and Fashion",
+      "Consumer Electronics"
+    ],
+    "Transportation": [
+      "Automotive Manufacturing",
+      "Electric Vehicles",
+      "Aeronautics",
+      "Ride-Sharing and Ride-Hailing",
+      "Autonomous Vehicles"
+    ],
+    "Entertainment and Media": [
+      "Film and Television Production",
+      "Music Production and Distribution",
+      "Streaming Services",
+      "Gaming and eSports",
+      "Publishing"
+    ],
+    "Tourism and Hospitality": [
+      "Hotels and Resorts",
+      "Travel Booking Platforms",
+      "Culinary and Dining Services",
+      "Adventure Tourism"
+    ],
+    "E-commerce": [
+      "Online Retail",
+      "Subscription Box Services",
+      "Marketplace Platforms"
+    ],
+    "Education": [
+      "E-Learning Platforms",
+      "EdTech Solutions",
+      "Training and Coaching"
+    ],
+    "Manufacturing": [
+      "Industrial Goods Production",
+      "Robotics and Automation",
+      "3D Printing"
+    ],
+    "Environment": [
+      "Waste Management and Recycling",
+      "Sustainable Solutions",
+      "Conservation Efforts"
+    ],
+    "Retail": [
+      "Brick and Mortar Stores",
+      "Specialty Stores",
+      "Supermarkets"
+    ],
+    "Services": [
+      "Consulting",
+      "Legal",
+      "Marketing and Advertising",
+      "Human Resources"
+    ],
+    "Telecommunications": [
+      "Network Providers",
+      "Internet Service Providers",
+      "Satellite Communication"
+    ],
+    "Infrastructure": [
+      "Urban Planning",
+      "Road and Bridge Construction",
+      "Port and Terminal Services"
+    ],
+    "Logistics and Supply Chain": [
+      "Warehousing",
+      "Distribution",
+      "Fleet Management"
+    ],
+    "Fashion and Beauty": [
+      "Cosmetic Brands",
+      "Fashion Design and Manufacturing",
+      "Beauty Services and Salons"
+    ],
+    "Space": [
+      "Satellite Manufacturing and Launch",
+      "Space Tourism",
+      "Space Mining"
+    ],
+    "Sports": [
+      "Team Ownership and Management",
+      "Sports Equipment Manufacturing",
+      "Sports Technology and Analytics"
+    ]
+}
+  

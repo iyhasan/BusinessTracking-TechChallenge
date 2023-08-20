@@ -5,3 +5,5 @@ from .user import (
 from .base import (
     Base,
 )
+
+from . import company
