@@ -10,10 +10,12 @@ class MetricSnapshot(Base, TimeStamps):
 
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
     company_id = Column(UUID(as_uuid=True), ForeignKey('company.id'))
-    next_estimated_fundraise_date = Column(Date, default=func.now())
-    created_by = Column(UUID(as_uuid=True), ForeignKey('users.id'))
+    next_estimated_fundraise_date = Column(Date)
+    created_by_id = Column(UUID(as_uuid=True), ForeignKey('users.id'))
+    entry_date = Column(Date, default=func.now())
 
     entries = relationship('MetricEntry')
+    created_by = relationship('User')
 
 
 class MetricType(Base):
@@ -30,6 +32,6 @@ class MetricEntry(Base, TimeStamps):
     metric_type_id = Column(Integer, ForeignKey('metric_type.id'), primary_key=True)
     value = Column(Float)
     value_type = Column(String(100))
-    created_by = Column(UUID(as_uuid=True), ForeignKey('users.id'))
+    created_by_id = Column(UUID(as_uuid=True), ForeignKey('users.id'))
 
     metric_type = relationship('MetricType')

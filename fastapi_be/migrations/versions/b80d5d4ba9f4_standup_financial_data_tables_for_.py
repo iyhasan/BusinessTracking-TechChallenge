@@ -45,8 +45,9 @@ def upgrade() -> None:
         sa.Column('created_at', sa.DateTime()),
         sa.Column('updated_at', sa.DateTime()),
         sa.Column('company_id', UUID(as_uuid=True), sa.ForeignKey('company.id'), nullable=False),
-        sa.Column('next_estimated_fundraise_date', sa.DateTime()),
-        sa.Column('created_by', UUID(as_uuid=True), sa.ForeignKey('users.id'), nullable=False),
+        sa.Column('entry_date', sa.Date()),
+        sa.Column('next_estimated_fundraise_date', sa.Date()),
+        sa.Column('created_by_id', UUID(as_uuid=True), sa.ForeignKey('users.id'), nullable=False),
     )
 
     op.create_table(
@@ -64,7 +65,7 @@ def upgrade() -> None:
         sa.Column('metric_type_id', sa.Integer(), sa.ForeignKey('metric_type.id'), nullable=False),
         sa.Column('value', sa.Float()),
         sa.Column('value_type', sa.String(100)),
-        sa.Column('created_by', UUID(as_uuid=True), sa.ForeignKey('users.id'), nullable=False),
+        sa.Column('created_by_id', UUID(as_uuid=True), sa.ForeignKey('users.id'), nullable=False),
         sa.PrimaryKeyConstraint('metric_snapshot_id', 'metric_type_id'),
     )
 

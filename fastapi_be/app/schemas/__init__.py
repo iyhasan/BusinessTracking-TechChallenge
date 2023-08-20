@@ -12,4 +12,4 @@ from .admins import (
     user_to_admin_user
 )
 
-from . import company
+from . import company, metric

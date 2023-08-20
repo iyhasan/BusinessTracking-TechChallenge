@@ -9,11 +9,12 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import CompanyCard from '../../components/company-card';
+import LatestMetricCard from '../../components/latest-metric-card';
 
 const CompanyDetail: React.FC = () => {
     
     const { id } = useParams()
-    const [company, setCompany] = useState()
+    const [company, setCompany] = useState<any>()
 
     useEffect(() => {
 
@@ -31,15 +32,15 @@ const CompanyDetail: React.FC = () => {
 
     return (
         <Layout>
-            <Box sx={{flexGrow: 1}}>
-                <Grid container>
+            <Box sx={{flexGrow: 1}} px={5} pt={2}>
+                <Grid container spacing={2}>
                     <Grid item lg={6} md={6} sm={6}>
-                        <Box px={5} pt={2}>
+                        <Box>
                         <CompanyCard company={company} />
                         </Box>
                     </Grid>
                     <Grid item lg={6} md={6} sm={6}>
-                        Metrics
+                        <LatestMetricCard key={company ? `latest-metric-${company.id}` : 'latest-metric-no-company'} company={company}/>
                     </Grid>
                 </Grid>
             </Box>
