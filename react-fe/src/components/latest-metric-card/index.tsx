@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { INDUSTRY_TAG_COLOR } from '../../utils/color_maps';
 import { GETLatestMetric, POSTMetricSnapshot, PUTMetricSnapshot } from '../../apis/metric';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
+import MetricEntriesList from '../metric-entries-list';
+import Divider from '@mui/material/Divider';
+
 
 interface Props {
     company?: any,
@@ -95,6 +94,9 @@ const LatestMetricCard = ({company}: Props) => {
                     >
                         Update Record
                     </Button>
+                    <Box sx={{mt: 3, width: '100%'}}>
+                        <MetricEntriesList snapshot_id={metric.id} />
+                    </Box>
                 </Box>
                 : 
                 renderEmpty()

@@ -32,6 +32,7 @@ async def get_metrics_for_company(
 
     return latest_metric
 
+
 @router.post("/company/{company_id}")
 async def create_metric_snapshot_for_company(
     company_id: UUID,
@@ -45,6 +46,19 @@ async def create_metric_snapshot_for_company(
         raise ErrorCreatingResource
 
     return db_metric_snapshot
+
+
+@router.get('/snapshot/{snapshot_id}')
+async def get_snapshot_by_id(
+    snapshot_id: UUID,
+    db: Session = Depends(db.get_db),
+):
+    db_snapshot = crud.metric.get_metric_snapshot_by_id(db, snapshot_id)
+
+    if not db_snapshot:
+        raise ResourceNotFoundException
+    
+    return db_snapshot
 
 @router.put("/snapshot/{snapshot_id}")
 async def update_metric_snapshot_by_id(
@@ -65,3 +79,51 @@ async def update_metric_snapshot_by_id(
         raise ErrorUpdatingResource
     
     return db_updated_snapshot
+
+
+@router.get("/entries/by-snapshot/{snapshot_id}")
+async def get_entries_for_snapshot(
+    snapshot_id: UUID,
+    db: Session = Depends(db.get_db)
+):
+    db_entries = crud.metric.get_entries_by_snapshot_id(db, snapshot_id)
+
+    return db_entries
+
+@router.post("/entries/")
+async def create_entry_for_snapshot(
+    payload: schemas.metric.CreateMetricEntry,
+    current_user = Depends(authentication.get_current_user),
+    db: Session = Depends(db.get_db)
+):
+    db_entry = crud.metric.get_metric_entry_by_id(db, payload.metric_snapshot_id, payload.metric_type_id)
+
+    if db_entry:
+        raise InvalidPayloadException
+    
+    db_entry = crud.metric.create_metric_entry(
+        db, current_user.id, payload
+    )
+
+    return db_entry
+
+@router.put("/entries/{snapshot_id}/{metric_type_id}")
+async def update_value_for_entry(
+    snapshot_id: UUID,
+    metric_type_id: int,
+    payload: schemas.metric.MetricEntryBase,
+    current_user = Depends(authentication.get_current_user),
+    db: Session = Depends(db.get_db)
+):
+
+    db_entry = crud.metric.get_metric_entry_by_id(db, snapshot_id, metric_type_id)
+
+    if not db_entry:
+        raise ResourceNotFoundException
+    
+    db_updated_entry = crud.metric.update_metric_entry(db, current_user.id, db_entry, payload)
+
+    if not db_updated_entry:
+        raise ErrorUpdatingResource
+    
+    return db_updated_entry
