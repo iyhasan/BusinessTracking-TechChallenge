@@ -5,8 +5,9 @@ import app.models.user as models
 from app.utils import  authentication, helper
 from datetime import datetime, timedelta
 from app.form_types.login_form  import LoginForm
-from app.exception.client_error import InvalidPayloadException
+from app.exception.client_error import InvalidPayloadException, ResourceNotFoundException
 from typing import List, Optional
+from uuid import UUID
 
 
 router = APIRouter()
@@ -22,3 +23,16 @@ async def get_companies(
 ):
     companies = crud.company.get_companies(db, sort_by, ascending, helper.get_offset(page_num, page_size), page_size, name_search)
     return companies
+
+
+@router.get("/{company_id}")
+async def get_company_by_id(
+    company_id: UUID,
+    db: Session = Depends(db.get_db),
+):
+    company = crud.company.get_company_by_id(db, company_id)
+
+    if not company:
+        raise ResourceNotFoundException('Company Not Found')
+    
+    return company

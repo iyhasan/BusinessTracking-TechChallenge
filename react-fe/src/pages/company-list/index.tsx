@@ -3,9 +3,12 @@ import Layout from '../../components/layout';
 import './index.css'
 import { GETCompanies } from '../../apis/company';
 import Table from '../../components/table/basic-table';
+import { useNavigate } from 'react-router-dom';
 
 
 const CompanyList: React.FC = () => {
+    const navigate = useNavigate()
+
     const [companies, setCompanies] = useState([])
 
     useEffect(() => {
@@ -39,6 +42,7 @@ const CompanyList: React.FC = () => {
                 }
             ]}
             data={companies}
+            onRowClick={(id) => navigate(`/company/${id}`)}
             />
         </Layout>
     )

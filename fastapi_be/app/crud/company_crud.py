@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from passlib.context import CryptContext
 from app import models, schemas
 from uuid import UUID
@@ -6,7 +6,7 @@ from typing import Optional
 from sqlalchemy import desc, asc, String, func
 
 def get_company_by_id(db: Session, company_id: UUID):
-    return db.query(models.company.Company).filter(models.company.Company.id == company_id).first()
+    return db.query(models.company.Company).options(joinedload(models.company.Company.industries)).filter(models.company.Company.id == company_id).first()
 
 
 def get_companies(

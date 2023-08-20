@@ -14,11 +14,12 @@ interface ColumnItem {
 
 interface Props {
     columns: ColumnItem[],
-    data: any[]
+    data: any[],
+    onRowClick ?: (id: string) => void
 }
 
 const Table = ({
-    columns, data
+    columns, data, onRowClick
 }: Props) => {
 
     return (
@@ -38,7 +39,11 @@ const Table = ({
                 <TableBody>
                     {
                         data.map((row) => (
-                            <TableRow key={row.id}>
+                            <TableRow 
+                            key={row.id} 
+                            hover={onRowClick ? true : false} 
+                            onClick={() => onRowClick ? onRowClick(row.id) : null}
+                            >
                                 {
                                     columns.map((column: ColumnItem) => (
                                         <TableCell key={`${row.id}-${column.dataKey}`}>{row[column.dataKey] || 'N/A'}</TableCell>
