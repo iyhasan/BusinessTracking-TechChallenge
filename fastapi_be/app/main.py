@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Depends
-from app.routers import  users, admins, auth, company
+from app.routers import  users, admins, auth, company, metric
 from fastapi.middleware.cors import CORSMiddleware
 from app.utils.authentication import get_current_user, get_current_admin
 from app.middlewares import ExceptionHandlingMiddleware
@@ -17,6 +17,7 @@ app.add_middleware(
 
 app.include_router(auth.router, prefix="/auth")
 app.include_router(company.router, prefix="/company")
+app.include_router(metric.router, prefix="/metric")
 
 app.include_router(users.router, prefix="/users", dependencies=[Depends(get_current_user)])
 

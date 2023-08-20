@@ -1,0 +1,42 @@
+[
+    {
+        "label": "Revenue",
+        "name": "revenue_annualized"
+    },
+    {
+        "label": "Cash Burn",
+        "name": "cash_burn_annualized"
+    },
+    {
+        "label": "Gross Profit Percentage",
+        "name": "gross_profit_percentage"
+    },
+    {
+        "label": "Gross Profit",
+        "name": "gross_profit_annualized"
+    },
+    {
+        "label": "EBITDA",
+        "name": "ebitda_annualized"
+    },
+    {
+        "label": "Cash on Hand",
+        "name": "cash_on_hand"
+    },
+    {
+        "label": "CAC",
+        "name": "customer_acquisition_cost"
+    },
+    {
+        "label": "LTV",
+        "name": "lifetime_value"
+    },
+    {
+        "label": "ACV/ARPU",
+        "name": "annual_contract_value_average_revenue_per_user"
+    },
+    {
+        "label": "Customer Count",
+        "name": "customer_count"
+    }
+]

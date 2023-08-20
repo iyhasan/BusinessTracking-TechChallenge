@@ -5,3 +5,4 @@ from .user_crud import (
 )
 
 from . import company_crud as company
+from . import metric_crud as metric

@@ -6,4 +6,4 @@ from .base import (
     Base,
 )
 
-from . import company
+from . import company, metric
