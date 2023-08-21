@@ -6,53 +6,13 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { INDUSTRY_TAG_COLOR } from '../../utils/color_maps';
+import EditIndustriesSection from './edit-industries-section';
+import BusinessModels from './edis-company-business-list';
 
 interface Props {
     company: any
 }
 
-const IndustiesTags = ({industries}: any) => {
-
-    const industriesMap: any = {}
-
-    // group industries by main
-    industries?.forEach((industry: any) => {
-        if (industriesMap[industry.main_industry]) {
-            industriesMap[industry.main_industry].push(industry.name)
-        } else {
-            industriesMap[industry.main_industry] = [industry.name]
-        }
-    })
-
-    if (Object.keys(industriesMap).length == 0) {
-        return <Typography>No industries linked to company</Typography>
-    }
-
-    return (
-        <Box sx={{display: 'flex'}}>
-            {
-                Object.entries(industriesMap).map(([main, subList]: any) => (
-                    <Box key={`industry-tag-main-${main}`} sx={{
-                        backgroundColor: `${(INDUSTRY_TAG_COLOR as any)[main]}60`, 
-                        border: 1,
-                        borderColor: (INDUSTRY_TAG_COLOR as any)[main],
-                        borderRadius: 2, 
-                        }}
-                        mr={1}
-                        px={2}>
-                        <Typography sx={{fontWeight: 'bold'}}>{main}</Typography>
-                        {subList.map((industry: string) => (
-                            <Box>
-                                <Typography ml={2}>{industry}</Typography>
-                            </Box>
-                        ))}
-                    </Box>
-                ))
-            }
-        </Box>
-    )
-
-}
 
 const CompanyCard = ({company}: Props) => {
 
@@ -64,13 +24,16 @@ const CompanyCard = ({company}: Props) => {
             <CardContent>
                 <Box sx={{display: 'flex', flexDirection: 'row', alignItems: 'flex-end'}}>
                     <img src={`${imgURL}`} width="150" height="150"/>
-                    <Box>
+                    <Box ml={3}>
                         <Typography sx={{fontSize: 24, fontWeight: 'bold'}}>{company?.name}</Typography>
                         <Typography sx={{fontSize: 20}} color="text.secondary">{company?.city}, {company?.country}</Typography>
                     </Box>
                 </Box>
                 <Box mt={5}>
-                <IndustiesTags industries={company?.industries} />
+                <EditIndustriesSection key={`industries-section-${company?.id || 'no-company'}`} company={company} />
+                <Box sx={{mt: 3}}>
+                    <BusinessModels key={`business-model-section-${company?.id || 'no-company'}`} company={company} />
+                </Box>
                 </Box>
             </CardContent>
         </Card>

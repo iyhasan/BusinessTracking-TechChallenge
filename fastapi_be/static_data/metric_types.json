@@ -1,11 +1,11 @@
 [
     {
         "label": "Revenue",
-        "name": "revenue_annualized"
+        "name": "revenue"
     },
     {
         "label": "Cash Burn",
-        "name": "cash_burn_annualized"
+        "name": "cash_burn"
     },
     {
         "label": "Gross Profit Percentage",
@@ -13,11 +13,11 @@
     },
     {
         "label": "Gross Profit",
-        "name": "gross_profit_annualized"
+        "name": "gross_profit"
     },
     {
         "label": "EBITDA",
-        "name": "ebitda_annualized"
+        "name": "ebitda"
     },
     {
         "label": "Cash on Hand",

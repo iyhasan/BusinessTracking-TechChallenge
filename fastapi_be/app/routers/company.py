@@ -25,6 +25,51 @@ async def get_companies(
     return companies
 
 
+@router.get("/industries")
+async def get_industries(
+    db: Session = Depends(db.get_db)
+):
+    db_industries = crud.company.get_industries(db)
+    return db_industries
+
+
+@router.post("/industries/{company_id}")
+async def update_industries_for_company(
+    payload: List[int],
+    company_id: UUID,
+    db: Session = Depends(db.get_db),
+    current_user = Depends(authentication.get_current_user),
+):
+    db_industries = crud.company.get_industries(db, payload)
+    
+    crud.company.update_industries_for_company(db, company_id, db_industries)
+
+    return crud.company.get_industries_for_company(db, company_id)
+
+
+@router.get("/business-models")
+async def get_industries(
+    db: Session = Depends(db.get_db)
+):
+    db_business_models = crud.company.get_business_models(db)
+    return db_business_models
+
+
+@router.post("/business-models/{company_id}")
+async def update_business_models_for_company(
+    payload: List[int],
+    company_id: UUID,
+    db: Session = Depends(db.get_db),
+    current_user = Depends(authentication.get_current_user),
+):
+    db_business_models = crud.company.get_business_models(db, payload)
+
+    
+    crud.company.update_business_models_for_company(db, company_id, db_business_models)
+
+    return crud.company.get_business_models_for_company(db, company_id)
+
+
 @router.get("/{company_id}")
 async def get_company_by_id(
     company_id: UUID,
