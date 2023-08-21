@@ -100,7 +100,7 @@ const EditIndustriesSection = ({company}: Props) => {
                     {
                         allMain.map((main) => (
                             <Box width="50%" py={2}>
-                                <Typography>{main}</Typography>
+                                <Typography sx={{fontWeight: 'bold'}}>{main}</Typography>
                                 {
                                     allIndustries.filter((industry) => industry.main_industry == main).map((industry) => (
                                         <Box sx={{display: 'flex', alignItems: 'center'}}>

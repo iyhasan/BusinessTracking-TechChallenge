@@ -17,6 +17,25 @@ def get_company_by_id(db: Session, company_id: UUID):
     )
 
 
+def create_new_company(
+        db: Session,
+        current_user: models.User,
+        payload: schemas.company.CompanyBase
+):
+    db_company = models.company.Company(
+        name=payload.name,
+        city=payload.city,
+        country=payload.country,
+        linkedin_url=payload.linkedin_url,
+        logo_url=payload.logo_url
+    )
+
+    db.add(db_company)
+    db.commit()
+    db.refresh(db_company)
+
+    return db_company
+
 def get_companies(
     db: Session,
     sort_by: str = "name",

@@ -1,12 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { INDUSTRY_TAG_COLOR } from '../../utils/color_maps';
-import EditIndustriesSection from './edit-industries-section';
 import { GETBusinessModels, GETCompanyByID, POSTCompanyBusinessModels } from '../../apis/company';
 import Checkbox from '@mui/material/Checkbox';
 

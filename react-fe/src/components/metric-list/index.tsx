@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { GETLatestMetric, GETMetricsForCompany, POSTMetricSnapshot, PUTMetricSnapshot } from '../../apis/metric';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

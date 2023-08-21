@@ -9,6 +9,12 @@ export const GETCompanies = () => {
     )
 };
 
+export const POSTCompany = (payload: any) => {
+    return axios.post(
+        `${subURL}`, payload
+    )
+}
+
 export const GETCompanyByID = (company_id: string) => {
     return axios.get(
         `${subURL}${company_id}`

@@ -25,6 +25,17 @@ async def get_companies(
     return companies
 
 
+@router.post("/")
+async def create_new_company(
+    payload: schemas.company.CompanyBase,
+    current_user = Depends(authentication.get_current_user),
+    db = Depends(db.get_db)
+):
+    db_company = crud.company.create_new_company(db, current_user, payload)
+
+    return db_company
+
+
 @router.get("/industries")
 async def get_industries(
     db: Session = Depends(db.get_db)

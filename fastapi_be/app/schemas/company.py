@@ -1,8 +1,12 @@
 from pydantic import BaseModel
+from typing import Optional
 
 class CompanyBase(BaseModel):
     name: str
-    logo_url: str
+    city: str
+    country: str
+    logo_url: Optional[str]
+    linkedin_url: Optional[str]
 
 class Company(CompanyBase):
     id: str
