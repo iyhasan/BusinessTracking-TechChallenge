@@ -35,3 +35,4 @@ class MetricEntry(Base, TimeStamps):
     created_by_id = Column(UUID(as_uuid=True), ForeignKey('users.id'))
 
     metric_type = relationship('MetricType')
+    created_by = relationship('User')

@@ -67,7 +67,10 @@ def get_entries_by_snapshot_id(
 ):
     return (
         db.query(models.metric.MetricEntry)
-        .options(joinedload(models.metric.MetricEntry.metric_type))
+        .options(
+            joinedload(models.metric.MetricEntry.metric_type),
+            joinedload(models.metric.MetricEntry.created_by)
+        )
         .filter(models.metric.MetricEntry.metric_snapshot_id == snapshot_id).all()
     )
 
@@ -78,7 +81,9 @@ def get_metric_entry_by_id(
 ):
     return (
         db.query(models.metric.MetricEntry)
-        .options(joinedload(models.metric.MetricEntry.metric_type))
+        .options(
+            joinedload(models.metric.MetricEntry.metric_type),
+            joinedload(models.metric.MetricEntry.created_by))
         .filter(models.metric.MetricEntry.metric_snapshot_id == snapshot_id)
         .filter(models.metric.MetricEntry.metric_type_id == metric_type_id)
         .first()

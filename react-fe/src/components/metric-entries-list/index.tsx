@@ -63,6 +63,7 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
 
         GETEntriesForSnapshot(snapshot_id)
         .then((resp) => {
+            console.log(resp.data)
             setEntries(resp.data)
         })
         .catch((err) => {
@@ -114,7 +115,11 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
                     dataKey: 'value_type',
                     editable: true,
                     options: DATA_PERIOD_OPTIONS
-                }]}
+                },
+            {
+                label: 'Entered By',
+                dataKey: 'created_by.first_name'
+            }]}
                 data={entries}
                 handleAdd={handleAdd}
                 getID={(entry) => entry.metric_type_id}
