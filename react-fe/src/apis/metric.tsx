@@ -9,6 +9,12 @@ export const GETLatestMetric = (company_id: string) => {
     )
 }
 
+export const GETMetricsForCompany = (company_id: string) => {
+    return axios.get(
+        `${subURL}company/${company_id}`
+    )
+}
+
 export const GETSnapshotByID = (snapshot_id: string) => {
     return axios.get(
         `${subURL}snapshot/${snapshot_id}`

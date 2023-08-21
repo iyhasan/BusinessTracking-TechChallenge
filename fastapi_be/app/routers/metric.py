@@ -32,6 +32,12 @@ async def get_metrics_for_company(
 
     return latest_metric
 
+@router.get("/company/{company_id}")
+async def get_metric_snapshots_for_company(
+    company_id: UUID,
+    db: Session = Depends(db.get_db)
+):
+    return crud.metric.get_metrics_for_company(db, company_id)
 
 @router.post("/company/{company_id}")
 async def create_metric_snapshot_for_company(

@@ -21,7 +21,7 @@ async def get_companies(
     ascending: bool = True,
     db: Session = Depends(db.get_db)
 ):
-    companies = crud.company.get_companies(db, sort_by, ascending, helper.get_offset(page_num, page_size), page_size, name_search)
+    companies = crud.company.get_companies(db, sort_by, ascending, name_search)
     return companies
 
 

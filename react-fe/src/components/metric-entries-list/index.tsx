@@ -60,7 +60,7 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
         <Box
             width={"100%"}
         >
-            <Paper elevation={2} sx={{minHeight: 200, px: 3, py: 2}}>
+            <Box sx={{minHeight: 200}}>
                 <Table
                 columns={[{
                     label: 'Metric Type',
@@ -108,7 +108,7 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
                     })
                 }}
                 />
-            </Paper>
+            </Box>
         </Box>
     )
 

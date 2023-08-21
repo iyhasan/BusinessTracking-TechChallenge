@@ -125,3 +125,14 @@ def create_metric_entry(
     db.commit()
     db.refresh(db_entry)
     return get_metric_entry_by_id(db, db_entry.metric_snapshot_id, db_entry.metric_type_id)
+
+
+def get_metrics_for_company(db: Session, company_id: UUID):
+
+    return (
+        db.query(models.metric.MetricSnapshot)
+        .options(joinedload(models.metric.MetricSnapshot.entries))
+        .filter(models.metric.MetricSnapshot.company_id == company_id)
+        .order_by(models.metric.MetricSnapshot.entry_date.desc())
+        .all()
+    )

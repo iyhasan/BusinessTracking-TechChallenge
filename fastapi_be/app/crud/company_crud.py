@@ -21,8 +21,6 @@ def get_companies(
     db: Session,
     sort_by: str = "name",
     is_asc: bool = True,
-    offset: int =  0,
-    limit: int =  20,
     search_name: Optional[str] = None,
 ):
     
@@ -36,7 +34,6 @@ def get_companies(
     db_companies = (
         query
         .order_by(order_func(getattr(models.company.Company, sort_by)))
-        .offset(offset).limit(limit)
         .all()
     )
 

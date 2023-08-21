@@ -10,11 +10,13 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import CompanyCard from '../../components/company-card';
 import LatestMetricCard from '../../components/latest-metric-card';
+import MetricsList from '../../components/metric-list';
 
 const CompanyDetail: React.FC = () => {
     
     const { id } = useParams()
     const [company, setCompany] = useState<any>()
+    const [toggleRefresh, setToggleRefresh] = useState<boolean>(false)
 
     useEffect(() => {
 
@@ -40,7 +42,12 @@ const CompanyDetail: React.FC = () => {
                         </Box>
                     </Grid>
                     <Grid item lg={6} md={6} sm={6}>
-                        <LatestMetricCard key={company ? `latest-metric-${company.id}` : 'latest-metric-no-company'} company={company}/>
+                        <LatestMetricCard key={company ? `latest-metric-${company.id}-${toggleRefresh}` : 'latest-metric-no-company'} company={company} triggerParentRefresh={() => {
+                            setToggleRefresh(!toggleRefresh)
+                        }}/>
+                        <Box mt={3}>
+                            <MetricsList key={company ? `all-metrics-${company.id}-${toggleRefresh}` : 'all-metrics-no-company'} company={company} excludeLatest={true}/>
+                        </Box>
                     </Grid>
                 </Grid>
             </Box>
