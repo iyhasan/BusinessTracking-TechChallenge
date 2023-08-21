@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
@@ -9,6 +9,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DesktopDatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import MetricEntriesList from '../metric-entries-list';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from '@mui/material/Snackbar';
 
 interface Props {
     metric_snapshot_id?: string,
@@ -20,6 +23,35 @@ interface Props {
 const MetricSnapshotCard = ({metric_snapshot_id, company, title, handleUpdate = (item: any) => {}}: Props) => {
 
     const [metric, setMetric] = useState<any>()
+
+    const [openSnack, setOpenSnack] = useState<boolean>(false)
+    const [snackMessage, setSnackMessage] = useState<string>('')
+
+    const triggerSnack = (message: string) => {
+        setSnackMessage(message)
+        setOpenSnack(true)
+    }
+
+    const handleSnackClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpenSnack(false);
+    };
+
+    const snackAction = (
+        <React.Fragment>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleSnackClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </React.Fragment>
+      );
 
     const updateField = (key: string, value: any) => {
         console.log(key, value)
@@ -98,6 +130,7 @@ const MetricSnapshotCard = ({metric_snapshot_id, company, title, handleUpdate = 
                     onClick={() => {
                         PUTMetricSnapshot(metric.id, metric)
                         .then((resp) => {
+                            triggerSnack('Updated Snapshot')
                             handleUpdate({...metric})
                         })
                         .catch((err) => {
@@ -114,6 +147,13 @@ const MetricSnapshotCard = ({metric_snapshot_id, company, title, handleUpdate = 
                 : 
                 renderEmpty()
             }
+            <Snackbar
+            open={openSnack}
+            autoHideDuration={3000}
+            onClose={handleSnackClose}
+            message={snackMessage}
+            action={snackAction}
+            />
         </Card>
     )
 

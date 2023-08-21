@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
-import { GETEntriesForSnapshot, GETLatestMetric, GETMetricTypes, GETSnapshotByID, POSTMetricEntry, POSTMetricSnapshot, PUTMetricEntry, PUTMetricSnapshot } from '../../apis/metric';
-import Paper from '@mui/material/Paper';
+import { GETEntriesForSnapshot, GETMetricTypes, POSTMetricEntry, PUTMetricEntry } from '../../apis/metric';
 import Table from '../table/basic-table';
 import { DATA_PERIOD_OPTIONS } from '../../utils/constants';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 interface Props {
     snapshot_id: string
@@ -14,6 +17,36 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
     const [types, setTypes] = useState<any[]>([])
     const [typesMap, setTypesMap] = useState<any>({})
     const [entries, setEntries] = useState<any[]>([])
+
+    const [openSnack, setOpenSnack] = useState<boolean>(false)
+    const [snackMessage, setSnackMessage] = useState<string>('')
+
+    const triggerSnack = (message: string) => {
+        setSnackMessage(message)
+        setOpenSnack(true)
+    }
+
+    const handleSnackClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpenSnack(false);
+    };
+
+    const snackAction = (
+        <React.Fragment>
+          <IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleSnackClose}
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </React.Fragment>
+      );
+
 
     useEffect(() => {
         GETMetricTypes()
@@ -48,6 +81,7 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
             metric_snapshot_id: snapshot_id,
             metric_type_id: newType.id,
         }).then((resp) => {
+            triggerSnack('Entry Added')
             entries.push(resp.data)
             setEntries([...entries])
         })
@@ -98,6 +132,8 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
                     .then((resp) => {
                         const newEntry = resp.data
 
+                        triggerSnack('Entry Updated')
+
                         setEntries(entries.map((e) => {
                             if (e.metric_type_id == newEntry.metric_type_id) return newEntry
                             return e
@@ -109,6 +145,13 @@ const MetricEntriesList = ({snapshot_id}: Props) => {
                 }}
                 />
             </Box>
+            <Snackbar
+            open={openSnack}
+            autoHideDuration={3000}
+            onClose={handleSnackClose}
+            message={snackMessage}
+            action={snackAction}
+            />
         </Box>
     )
 

@@ -113,15 +113,15 @@ const EditIndustriesSection = ({company}: Props) => {
                         ))
                     }
                 </Box>
-                <Button onClick={saveCompanyIndustryUpdates}>Save Changes</Button>
-                <Button onClick={() => setIsEditMode(!isEditMode)}>Cancel</Button>
+                <Button variant="contained" onClick={saveCompanyIndustryUpdates}>Save Changes</Button>
+                <Button sx={{ml: 2}} onClick={() => setIsEditMode(!isEditMode)}>Cancel</Button>
             </Box>
         )
     }
 
     return (
         <Box>
-            <Box sx={{display: 'flex', justifyContent: 'space-between', mb:2}}>
+            <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
                 <Typography sx={{fontSize: 20, fontWeight: 'bold'}}>Main Industries</Typography>
                 <Button variant="contained" onClick={() => setIsEditMode(!isEditMode)}>Edit Industries</Button>
             </Box>

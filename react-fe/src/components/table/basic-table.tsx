@@ -60,6 +60,9 @@ const Table = ({
 
             return (
                 <TextField 
+                sx={{
+                    width: '100%'
+                }}
                 select
                 defaultValue={defaultValue}
                 onChange={(newValue) => onFieldChange(getID(row), column.dataKey, newValue.target.value)}
@@ -81,7 +84,10 @@ const Table = ({
         }
 
         return (
-            <TextField 
+            <TextField
+            sx={{
+                width: '100%'
+            }}
             type={column.type}
             InputProps={
             column.type == 'number' ? {
@@ -100,11 +106,15 @@ const Table = ({
         <TableContainer component={Paper}>
             <MTable>
                 <TableHead>
-                    <TableRow>
+                    <TableRow
+                        sx={{
+                            backgroundColor: '#333333',
+                        }}
+                    >
                         {
                             columns.map((column: ColumnItem) => {
                                 return (
-                                    <TableCell key={`column-header-${column.dataKey}`}>{column.label}</TableCell>
+                                    <TableCell key={`column-header-${column.dataKey}`} sx={{fontWeight: 'bold', color: '#FFFFFF'}}>{column.label}</TableCell>
                                 )
                             })
                         }
@@ -116,6 +126,13 @@ const Table = ({
                             <TableRow 
                             key={getID(row)} 
                             hover={onRowClick ? true : false} 
+                            sx={{
+                                cursor: onRowClick ? 'pointer' : null,
+                                '&:hover .MuiTableCell-root': {
+                                    color: onRowClick ? 'blue' : null,
+                                    fontWeight: 'bold'
+                                }
+                            }}
                             onClick={() => onRowClick ? onRowClick(getID(row)) : null}
                             >
                                 {

@@ -8,7 +8,7 @@ interface LayoutProps {
   
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div style={{backgroundColor: '#999999', minHeight: '100vh'}}>
+        <div style={{backgroundColor: '#BBBBBB', minHeight: '100vh'}}>
         <Navbar />
         <div>{children}</div>
         </div>

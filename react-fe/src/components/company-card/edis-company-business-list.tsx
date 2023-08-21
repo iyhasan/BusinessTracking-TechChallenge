@@ -87,8 +87,8 @@ const BusinessModels = ({company}: any) => {
                         ))
                     }
                 </Box>
-                <Button onClick={saveCompanyBusinessModelUpdates}>Save Changes</Button>
-                <Button onClick={() => setIsEditMode(!isEditMode)}>Cancel</Button>
+                <Button variant="contained" onClick={saveCompanyBusinessModelUpdates}>Save Changes</Button>
+                <Button sx={{ml: 2}} onClick={() => setIsEditMode(!isEditMode)}>Cancel</Button>
             </Box>
         )
 
@@ -96,8 +96,8 @@ const BusinessModels = ({company}: any) => {
 
     return (
         <Box>
-            <Box sx={{display: 'flex', justifyContent: 'space-between', mb:2}}>
-                <Typography mt={2} sx={{fontSize: 20, fontWeight: 'bold'}}>Business Models</Typography>
+            <Box sx={{display: 'flex', justifyContent: 'space-between', my: 2}}>
+                <Typography sx={{fontSize: 20, fontWeight: 'bold'}}>Business Models</Typography>
                 <Button variant="contained" onClick={() => setIsEditMode(!isEditMode)}>Edit Business Models</Button>
             </Box>
             <Box sx={{display: 'flex', flexWrap: 'wrap'}}>
