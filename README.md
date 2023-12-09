@@ -22,4 +22,19 @@ https://dbdiagram.io/d/64e3ae9002bd1c4a5e25ba4d
 There should be some companies already loaded in the DB for you to mess around with. 
 
 
+### Screenshots
+
+#### Home Screen 
+
+![Home Screen](screenshots/home-screen.png)
+
+#### Add Company Form
+
+![Add Company Form](screenshots/add-company-form.png)
+
+#### Company Profile Page
+
+![Company Profile Page](screenshots/company-profile-page.png)
+
+
 [^1]: This repo was forked from my template repo for a webapp that can be found publicly using the following link. https://github.com/iyhasan/fastapi-react-template-monorepo
